@@ -1,3 +1,4 @@
+# config.py
 BOOKIES = []
 SPORTS = [] # Pulled from master sports list
 BET_SIZE = 100

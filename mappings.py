@@ -1,3 +1,5 @@
+# mappings.py
+
 # Map strings to strings
 # Likely mappings to fill in 
 
