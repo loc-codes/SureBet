@@ -30,7 +30,6 @@ def main(browser) -> list[BookieMatch]:
         
         # For each match in book, Deep Copy SCRAPING_TEMPLATE, fill it out and append to matches
         for match_element in match_elements:
-            # print(match_element)
             match = deepcopy(SCRAPING_TEMPLATE)
             match['bookie'] = 'neds'
             match['url'] = url
@@ -38,7 +37,6 @@ def main(browser) -> list[BookieMatch]:
 
             date = match_element.find_previous('div', attrs={'class': 'sports-date-title'}).text.strip()
             time = match_element.find('span', attrs={'class': 'sport-event-card__countdown'}).text.strip()
-            # print(f'{date} {time}')
             match['date_time'] = datetime.strptime(f'{date} {time}', "%A %d/%m/%Y %I:%M%p")
          
             team_info = match_element.find_all('div', attrs={'class': 'price-button-simple'})
