@@ -1,7 +1,5 @@
 # tab.py
-def main():
+def main(browser):
     print("Running tab script")
     # Add your scraping logic here
-
-if __name__ == "__main__":
-    main()
+    return []

@@ -1,0 +1,104 @@
+[
+    {
+        "date_time": "2024-06-22T16:35:00",
+        "sport": "afl",
+        "team1": "Greater Western Sydney",
+        "team2": "Sydney",
+        "team1_max": {
+            "bookie": "sportsbet",
+            "odds": 2.76,
+            "url": "https://www.sportsbet.com.au/betting/australian-rules/afl"
+        },
+        "team2_max": {
+            "bookie": "bluebet",
+            "odds": 1.5,
+            "url": "https://www.bluebet.com.au/sports/Australian-Rules/101/AFL/Toyota-AFL-Premiership/43735"
+        },
+        "coefficient": 1.028985507246377
+    },
+    {
+        "date_time": "2024-06-22T13:45:00",
+        "sport": "afl",
+        "team1": "Port Adelaide",
+        "team2": "Brisbane",
+        "team1_max": {
+            "bookie": "sportsbet",
+            "odds": 1.89,
+            "url": "https://www.sportsbet.com.au/betting/australian-rules/afl"
+        },
+        "team2_max": {
+            "bookie": "bluebet",
+            "odds": 1.97,
+            "url": "https://www.bluebet.com.au/sports/Australian-Rules/101/AFL/Toyota-AFL-Premiership/43735"
+        },
+        "coefficient": 1.0367147422984986
+    },
+    {
+        "date_time": "2024-06-23T16:00:00",
+        "sport": "afl",
+        "team1": "Fremantle",
+        "team2": "Gold Coast",
+        "team1_max": {
+            "bookie": "bluebet",
+            "odds": 1.44,
+            "url": "https://www.bluebet.com.au/sports/Australian-Rules/101/AFL/Toyota-AFL-Premiership/43735"
+        },
+        "team2_max": {
+            "bookie": "sportsbet",
+            "odds": 2.89,
+            "url": "https://www.sportsbet.com.au/betting/australian-rules/afl"
+        },
+        "coefficient": 1.0404652056901191
+    },
+    {
+        "date_time": "2024-06-22T19:30:00",
+        "sport": "afl",
+        "team1": "Melbourne",
+        "team2": "North Melbourne",
+        "team1_max": {
+            "bookie": "bluebet",
+            "odds": 1.17,
+            "url": "https://www.bluebet.com.au/sports/Australian-Rules/101/AFL/Toyota-AFL-Premiership/43735"
+        },
+        "team2_max": {
+            "bookie": "sportsbet",
+            "odds": 5.3,
+            "url": "https://www.sportsbet.com.au/betting/australian-rules/afl"
+        },
+        "coefficient": 1.0433800999838736
+    },
+    {
+        "date_time": "2024-06-21T19:40:00",
+        "sport": "afl",
+        "team1": "Carlton",
+        "team2": "Geelong",
+        "team1_max": {
+            "bookie": "bluebet",
+            "odds": 1.6,
+            "url": "https://www.bluebet.com.au/sports/Australian-Rules/101/AFL/Toyota-AFL-Premiership/43735"
+        },
+        "team2_max": {
+            "bookie": "sportsbet",
+            "odds": 2.37,
+            "url": "https://www.sportsbet.com.au/betting/australian-rules/afl"
+        },
+        "coefficient": 1.0469409282700421
+    },
+    {
+        "date_time": "2024-06-23T13:00:00",
+        "sport": "afl",
+        "team1": "Essendon",
+        "team2": "West Coast",
+        "team1_max": {
+            "bookie": "bluebet",
+            "odds": 1.16,
+            "url": "https://www.bluebet.com.au/sports/Australian-Rules/101/AFL/Toyota-AFL-Premiership/43735"
+        },
+        "team2_max": {
+            "bookie": "sportsbet",
+            "odds": 5.3,
+            "url": "https://www.sportsbet.com.au/betting/australian-rules/afl"
+        },
+        "coefficient": 1.0507482108002604
+    }
+]
