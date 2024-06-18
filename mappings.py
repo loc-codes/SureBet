@@ -28,5 +28,13 @@ team_names = {
 
         # Bluebet > Master
         "Brisbane Lions": "Brisbane",
+
+        # Neds > Master
+        "Brisbane Lions": "Brisbane",
+        "Geelong Cats": "Geelong",
+        "Gold Coast Suns": "Gold Coast",
+        "GWS Giants": "Greater Western Sydney",
+        "Sydney Swans": "Sydney",
+        "West Coast Eagles": "West Coast"
     }
 }

@@ -27,11 +27,28 @@
             "url": "https://www.sportsbet.com.au/betting/australian-rules/afl"
         },
         "team2_max": {
+            "bookie": "neds",
+            "odds": 1.96,
+            "url": "https://www.neds.com.au/sports/australian-rules/afl"
+        },
+        "coefficient": 1.0393046107331823
+    },
+    {
+        "date_time": "2024-06-22T19:30:00",
+        "sport": "afl",
+        "team1": "Melbourne",
+        "team2": "North Melbourne",
+        "team1_max": {
             "bookie": "bluebet",
-            "odds": 1.97,
+            "odds": 1.17,
             "url": "https://www.bluebet.com.au/sports/Australian-Rules/101/AFL/Toyota-AFL-Premiership/43735"
         },
-        "coefficient": 1.0367147422984986
+        "team2_max": {
+            "bookie": "neds",
+            "odds": 5.4,
+            "url": "https://www.neds.com.au/sports/australian-rules/afl"
+        },
+        "coefficient": 1.03988603988604
     },
     {
         "date_time": "2024-06-23T16:00:00",
@@ -49,23 +66,6 @@
             "url": "https://www.sportsbet.com.au/betting/australian-rules/afl"
         },
         "coefficient": 1.0404652056901191
-    },
-    {
-        "date_time": "2024-06-22T19:30:00",
-        "sport": "afl",
-        "team1": "Melbourne",
-        "team2": "North Melbourne",
-        "team1_max": {
-            "bookie": "bluebet",
-            "odds": 1.17,
-            "url": "https://www.bluebet.com.au/sports/Australian-Rules/101/AFL/Toyota-AFL-Premiership/43735"
-        },
-        "team2_max": {
-            "bookie": "sportsbet",
-            "odds": 5.3,
-            "url": "https://www.sportsbet.com.au/betting/australian-rules/afl"
-        },
-        "coefficient": 1.0433800999838736
     },
     {
         "date_time": "2024-06-21T19:40:00",
@@ -95,10 +95,10 @@
             "url": "https://www.bluebet.com.au/sports/Australian-Rules/101/AFL/Toyota-AFL-Premiership/43735"
         },
         "team2_max": {
-            "bookie": "sportsbet",
-            "odds": 5.3,
-            "url": "https://www.sportsbet.com.au/betting/australian-rules/afl"
+            "bookie": "neds",
+            "odds": 5.4,
+            "url": "https://www.neds.com.au/sports/australian-rules/afl"
         },
-        "coefficient": 1.0507482108002604
+        "coefficient": 1.0472541507024267
     }
 ]

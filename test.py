@@ -1,8 +1,8 @@
-import bookies.bluebet
+import bookies.neds as test_script
 from playwright.sync_api import sync_playwright
 
 
 with sync_playwright() as playwright:
     browser = playwright.chromium.launch(headless=False)
-    bookies.bluebet.main(browser)
+    test_script.main(browser)
     browser.close()

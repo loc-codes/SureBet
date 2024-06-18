@@ -2,3 +2,4 @@
 venv
 __pycache__
 bookies/__pycache__
+odds.json
