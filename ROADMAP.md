@@ -15,3 +15,4 @@
 
 # FUTURE PHASES
 1. Phase 2: Bot trader
+2. Value Bet, using betfair or pinnacle implied probabilities
