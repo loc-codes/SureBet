@@ -15,6 +15,21 @@ from datetime import datetime, timedelta
 from utils import standardise_team_name
 import re
 
+def round_to_nearest_five_minutes(date_time: datetime):
+    '''
+    Sportsbet often has matches 1 minute later than others
+    '''    
+    # Calculate the number of minutes since the start of the hour
+    minutes = date_time.minute
+    remainder = minutes % 5
+    if remainder >= 2.5:
+        rounded_minutes = minutes + (5 - remainder)
+    else:
+        rounded_minutes = minutes - remainder
+    rounded_date_time = date_time.replace(minute=0) + timedelta(minutes=rounded_minutes)
+    
+    return rounded_date_time
+
 def handle_sportsbet_team_names(team):
     # Built mainly to handle baseball names like Detroit Tigers (T Skubal)
     team = team.split('(')[0].strip()
@@ -52,8 +67,10 @@ def main(browser) -> list[BookieMatch]:
             team1 = match_element.find('div', attrs={'data-automation-id': 'participant-one'}).text
             team2 = match_element.find('div', attrs={'data-automation-id': 'participant-two'}).text
             team1, team2 = handle_sportsbet_team_names(team1), handle_sportsbet_team_names(team2)
-            match['team1'] = standardise_team_name(sport, team1)
-            match['team2'] = standardise_team_name(sport, team2)
+            team1, team2 = standardise_team_name(sport, team1), standardise_team_name(sport, team2)
+            match['team1'], match['team2'] = team1, team2
+            if sport == 'mlb':
+                match['team1'], match['team2'] = team2, team1 # Sportsbet changes order of home and away teams
             date = match_element.find_previous('div', attrs={'data-automation-id': 'competition-event-group-title'}).text
             time = match_element.find('span', attrs={'data-automation-id': 'competition-event-card-time'}).text
             time = re.match(r"(\d{1,2}:\d{2})", time).group(1)
@@ -62,8 +79,12 @@ def main(browser) -> list[BookieMatch]:
             if "Tomorrow" in date_time:
                 tomorrow_date = datetime.now() + timedelta(days=1)
                 date_time = date_time.replace("Tomorrow", f'{tomorrow_date.strftime("%A")},')
-            match['date_time'] = datetime.strptime(date_time, "%A, %d %b %H:%M %Y")
-            match['team1_odds'], match['team2_odds'] = extract_match_element_type_1_odds(match_element)
+            date_time = datetime.strptime(date_time, "%A, %d %b %H:%M %Y")
+            match['date_time'] = round_to_nearest_five_minutes(date_time)
+            team1_odds, team2_odds = extract_match_element_type_1_odds(match_element)
+            match['team1_odds'], match['team2_odds'] = team1_odds, team2_odds
+            if sport == 'mlb':
+                 match['team1_odds'], match['team2_odds'] = team2_odds, team1_odds # Sportsbet changes order of home and away teams
             match = dacite.from_dict(data_class=BookieMatch, data=match)
             matches.append(match)
 
