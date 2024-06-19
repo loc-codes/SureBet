@@ -69,7 +69,7 @@ def main():
     master_matches: list[MasterMatch] = []
 
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=False)
+        browser = playwright.chromium.launch(headless=True)
         
         # List all Python files in the bookies directory
         for filename in os.listdir(bookies_dir):

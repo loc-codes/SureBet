@@ -1,22 +1,5 @@
 [
     {
-        "date_time": "2024-06-22T16:35:00",
-        "sport": "afl",
-        "team1": "Greater Western Sydney",
-        "team2": "Sydney",
-        "team1_max": {
-            "bookie": "sportsbet",
-            "odds": 2.96,
-            "url": "https://www.sportsbet.com.au/betting/australian-rules"
-        },
-        "team2_max": {
-            "bookie": "bluebet",
-            "odds": 1.5,
-            "url": "https://www.bluebet.com.au/sports/Australian-Rules/101"
-        },
-        "coefficient": 1.0045045045045045
-    },
-    {
         "date_time": "2024-06-30T13:10:00",
         "sport": "afl",
         "team1": "St Kilda",
@@ -34,23 +17,6 @@
         "coefficient": 1.0105134224762682
     },
     {
-        "date_time": "2024-06-20T09:05:00",
-        "sport": "mlb",
-        "team1": "New York Yankees",
-        "team2": "Baltimore Orioles",
-        "team1_max": {
-            "bookie": "playup",
-            "odds": 1.6,
-            "url": "https://www.playup.com.au/betting/sports/baseball/mlb"
-        },
-        "team2_max": {
-            "bookie": "unibet",
-            "odds": 2.55,
-            "url": "https://www.unibet.com.au/betting/sports/filter/baseball/mlb/all/matches"
-        },
-        "coefficient": 1.017156862745098
-    },
-    {
         "date_time": "2024-06-20T03:05:00",
         "sport": "mlb",
         "team1": "Philadelphia Phillies",
@@ -66,6 +32,40 @@
             "url": "https://www.unibet.com.au/betting/sports/filter/baseball/mlb/all/matches"
         },
         "coefficient": 1.02166019782146
+    },
+    {
+        "date_time": "2024-06-22T16:35:00",
+        "sport": "afl",
+        "team1": "Greater Western Sydney",
+        "team2": "Sydney",
+        "team1_max": {
+            "bookie": "sportsbet",
+            "odds": 2.96,
+            "url": "https://www.sportsbet.com.au/betting/australian-rules"
+        },
+        "team2_max": {
+            "bookie": "neds",
+            "odds": 1.46,
+            "url": "https://www.neds.com.au/sports/australian-rules/afl"
+        },
+        "coefficient": 1.0227693446871529
+    },
+    {
+        "date_time": "2024-06-20T09:05:00",
+        "sport": "mlb",
+        "team1": "New York Yankees",
+        "team2": "Baltimore Orioles",
+        "team1_max": {
+            "bookie": "playup",
+            "odds": 1.58,
+            "url": "https://www.playup.com.au/betting/sports/baseball/mlb"
+        },
+        "team2_max": {
+            "bookie": "unibet",
+            "odds": 2.55,
+            "url": "https://www.unibet.com.au/betting/sports/filter/baseball/mlb/all/matches"
+        },
+        "coefficient": 1.0250682551501613
     },
     {
         "date_time": "2024-06-20T10:40:00",
@@ -202,23 +202,6 @@
             "url": "https://www.sportsbet.com.au/betting/baseball"
         },
         "coefficient": 1.0362972508591066
-    },
-    {
-        "date_time": "2024-06-20T06:05:00",
-        "sport": "mlb",
-        "team1": "Washington Nationals",
-        "team2": "Arizona Diamondbacks",
-        "team1_max": {
-            "bookie": "unibet",
-            "odds": 2.43,
-            "url": "https://www.unibet.com.au/betting/sports/filter/baseball/mlb/all/matches"
-        },
-        "team2_max": {
-            "bookie": "playup",
-            "odds": 1.6,
-            "url": "https://www.playup.com.au/betting/sports/baseball/mlb"
-        },
-        "coefficient": 1.0365226337448559
     },
     {
         "date_time": "2024-06-20T02:20:00",
@@ -408,6 +391,23 @@
         "coefficient": 1.0409121395036887
     },
     {
+        "date_time": "2024-06-20T06:05:00",
+        "sport": "mlb",
+        "team1": "Washington Nationals",
+        "team2": "Arizona Diamondbacks",
+        "team1_max": {
+            "bookie": "unibet",
+            "odds": 2.38,
+            "url": "https://www.unibet.com.au/betting/sports/filter/baseball/mlb/all/matches"
+        },
+        "team2_max": {
+            "bookie": "unibet",
+            "odds": 1.61,
+            "url": "https://www.unibet.com.au/betting/sports/filter/baseball/mlb/all/matches"
+        },
+        "coefficient": 1.041286079649251
+    },
+    {
         "date_time": "2024-06-29T16:35:00",
         "sport": "afl",
         "team1": "Gold Coast",
@@ -476,7 +476,7 @@
         "coefficient": 1.0437710437710437
     },
     {
-        "date_time": "2024-06-20T20:32:47.198264",
+        "date_time": "2024-06-20T20:40:16.004295",
         "sport": "mlb",
         "team1": "Cleveland Guardians",
         "team2": "Seattle Mariners",
@@ -527,7 +527,7 @@
         "coefficient": 1.0474576271186442
     },
     {
-        "date_time": "2024-06-20T20:32:47.199873",
+        "date_time": "2024-06-20T20:40:16.005997",
         "sport": "mlb",
         "team1": "Toronto Blue Jays",
         "team2": "Boston Red Sox",
@@ -544,7 +544,7 @@
         "coefficient": 1.0476190476190474
     },
     {
-        "date_time": "2024-06-20T20:32:47.199064",
+        "date_time": "2024-06-20T20:40:16.005135",
         "sport": "mlb",
         "team1": "New York Yankees",
         "team2": "Baltimore Orioles",
@@ -561,7 +561,7 @@
         "coefficient": 1.0491889063317634
     },
     {
-        "date_time": "2024-06-20T20:32:47.206636",
+        "date_time": "2024-06-20T20:40:16.011527",
         "sport": "mlb",
         "team1": "Oakland Athletics",
         "team2": "Kansas City Royals",
@@ -612,7 +612,7 @@
         "coefficient": 1.0501546322441844
     },
     {
-        "date_time": "2024-06-20T20:32:47.197472",
+        "date_time": "2024-06-20T20:40:16.003419",
         "sport": "mlb",
         "team1": "Washington Nationals",
         "team2": "Arizona Diamondbacks",
@@ -629,7 +629,7 @@
         "coefficient": 1.050531914893617
     },
     {
-        "date_time": "2024-06-20T20:32:47.190183",
+        "date_time": "2024-06-20T20:40:16.000011",
         "sport": "mlb",
         "team1": "Pittsburgh Pirates",
         "team2": "Cincinnati Reds",
@@ -646,7 +646,7 @@
         "coefficient": 1.0507446221731935
     },
     {
-        "date_time": "2024-06-20T20:32:47.203768",
+        "date_time": "2024-06-20T20:40:16.009607",
         "sport": "mlb",
         "team1": "Colorado Rockies",
         "team2": "Los Angeles Dodgers",
@@ -663,7 +663,7 @@
         "coefficient": 1.051282051282051
     },
     {
-        "date_time": "2024-06-20T20:32:47.196649",
+        "date_time": "2024-06-20T20:40:16.002557",
         "sport": "mlb",
         "team1": "Chicago Cubs",
         "team2": "San Francisco Giants",
@@ -680,7 +680,7 @@
         "coefficient": 1.0519631122646196
     },
     {
-        "date_time": "2024-06-20T20:32:47.202835",
+        "date_time": "2024-06-20T20:40:16.008672",
         "sport": "mlb",
         "team1": "Chicago White Sox",
         "team2": "Houston Astros",
@@ -697,7 +697,7 @@
         "coefficient": 1.0524861878453038
     },
     {
-        "date_time": "2024-06-20T20:32:47.201800",
+        "date_time": "2024-06-20T20:40:16.007761",
         "sport": "mlb",
         "team1": "Texas Rangers",
         "team2": "New York Mets",
@@ -714,7 +714,7 @@
         "coefficient": 1.0526315789473684
     },
     {
-        "date_time": "2024-06-20T20:32:47.192510",
+        "date_time": "2024-06-20T20:40:16.000861",
         "sport": "mlb",
         "team1": "Miami Marlins",
         "team2": "St Louis Cardinals",
@@ -731,7 +731,7 @@
         "coefficient": 1.053324555628703
     },
     {
-        "date_time": "2024-06-20T20:32:47.195618",
+        "date_time": "2024-06-20T20:40:16.001703",
         "sport": "mlb",
         "team1": "Philadelphia Phillies",
         "team2": "San Diego Padres",
@@ -748,7 +748,7 @@
         "coefficient": 1.05446273250368
     },
     {
-        "date_time": "2024-06-20T20:32:47.200709",
+        "date_time": "2024-06-20T20:40:16.006870",
         "sport": "mlb",
         "team1": "Minnesota Twins",
         "team2": "Tampa Bay Rays",
@@ -765,7 +765,7 @@
         "coefficient": 1.05446273250368
     },
     {
-        "date_time": "2024-06-20T20:32:47.205193",
+        "date_time": "2024-06-20T20:40:16.010554",
         "sport": "mlb",
         "team1": "Los Angeles Angels",
         "team2": "Milwaukee Brewers",
@@ -782,7 +782,7 @@
         "coefficient": 1.05446273250368
     },
     {
-        "date_time": "2024-06-20T20:32:47.189041",
+        "date_time": "2024-06-20T20:40:15.999023",
         "sport": "mlb",
         "team1": "Atlanta Braves",
         "team2": "Detroit Tigers",

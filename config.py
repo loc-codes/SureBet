@@ -1,7 +1,4 @@
 # config.py
-BOOKIES = []
-SPORTS = [] # Pulled from master sports list
-BET_SIZE = 100
 
 MASTER_CONFIG = {
     "sportsbet": {
@@ -45,3 +42,7 @@ MASTER_CONFIG = {
         }
     },
 }
+
+BET_SIZE = 100
+BOOKIES = [key for key in MASTER_CONFIG.keys()]
+SPORTS = list({sport for bookie in MASTER_CONFIG.values() for sport in bookie['sports'].keys()})
