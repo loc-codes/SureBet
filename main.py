@@ -9,7 +9,7 @@ from utils import datetime_serializer
 
 
 # Modules
-from config import BOOKIES, SPORTS, BET_SIZE, BOOKIES_SPORTS_CONFIG
+from config import BOOKIES, SPORTS, BET_SIZE
 from models import BookieMatch, MasterMatch
 
 

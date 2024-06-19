@@ -8,10 +8,17 @@ It identifies and processes two types of match elements on the webpage:
 
 import dacite
 from models import BookieMatch, SCRAPING_TEMPLATE
+from config import MASTER_CONFIG
 from copy import deepcopy
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 from utils import standardise_team_name
+import re
+
+def handle_sportsbet_team_names(team):
+    # Built mainly to handle baseball names like Detroit Tigers (T Skubal)
+    team = team.split('(')[0].strip()
+    return team
 
 def extract_match_element_type_1_odds(match_element):
     # Scrape the odds under 'Head to Head'
@@ -24,14 +31,13 @@ def extract_match_element_type_1_odds(match_element):
 def main(browser) -> list[BookieMatch]:
     print("Running sportsbet script")
 
+    bookie = 'sportsbet'
     page = browser.new_page()
-    sports_links = {
-        "afl": "https://www.sportsbet.com.au/betting/australian-rules/afl" 
-    }
+    config = MASTER_CONFIG[bookie]['sports']
     matches = []
 
-    for sport, url in sports_links.items():
-        page.goto(url) # Some selenium/playwright logic here
+    for sport, url in config.items():
+        page.goto(url) 
         soup = BeautifulSoup(page.content(), 'html.parser')
 
         match_elements_type_1 = soup.find_all('div', attrs={'data-automation-id': 'multi-market-coupon-event'})
@@ -45,12 +51,18 @@ def main(browser) -> list[BookieMatch]:
             match['sport'] = sport
             team1 = match_element.find('div', attrs={'data-automation-id': 'participant-one'}).text
             team2 = match_element.find('div', attrs={'data-automation-id': 'participant-two'}).text
+            team1, team2 = handle_sportsbet_team_names(team1), handle_sportsbet_team_names(team2)
             match['team1'] = standardise_team_name(sport, team1)
             match['team2'] = standardise_team_name(sport, team2)
-            date_string = match_element.find('span', attrs={'data-automation-id': 'competition-event-card-time'}).text
-            # This could cause fake negatives - known bug to fixx
-            current_year = datetime.now().year
-            match['date_time'] = datetime.strptime(f"{date_string} {current_year}", "%A, %d %b %H:%M %Y")
+            date = match_element.find_previous('div', attrs={'data-automation-id': 'competition-event-group-title'}).text
+            time = match_element.find('span', attrs={'data-automation-id': 'competition-event-card-time'}).text
+            time = re.match(r"(\d{1,2}:\d{2})", time).group(1)
+            # This could cause fake negatives - known bug to fix
+            date_time = f'{date} {time} {datetime.now().year}'
+            if "Tomorrow" in date_time:
+                tomorrow_date = datetime.now() + timedelta(days=1)
+                date_time = date_time.replace("Tomorrow", f'{tomorrow_date.strftime("%A")},')
+            match['date_time'] = datetime.strptime(date_time, "%A, %d %b %H:%M %Y")
             match['team1_odds'], match['team2_odds'] = extract_match_element_type_1_odds(match_element)
             match = dacite.from_dict(data_class=BookieMatch, data=match)
             matches.append(match)
