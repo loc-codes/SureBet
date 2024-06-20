@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: surebet-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python backend/server.py"
+    envVars:
+      - key: FLASK_ENV
+        value: production
+
+cronJobs:
+  - name: run-scraper
+    schedule: "@every 2m"
+    command: "python backend/main.py"
