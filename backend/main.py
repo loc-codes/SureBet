@@ -4,6 +4,7 @@ import os
 import json
 import importlib.util
 from playwright.sync_api import sync_playwright
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import asdict
 from utils import datetime_serializer
 
@@ -14,12 +15,27 @@ from models import BookieMatch, MasterMatch
 
 
 def run_bookie_script(module, browser):
-    if hasattr(module, 'main'):
-        return module.main(browser)
-    else:
-        print(f"No main function found in {module.__name__}")
-        return []
-    
+    return module.main(browser)
+
+def process_bookie_script(script_path):
+    try:
+        module_name = os.path.splitext(os.path.basename(script_path))[0]
+        spec = importlib.util.spec_from_file_location(module_name, script_path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=True)
+            if hasattr(module, 'main') and callable(getattr(module, 'main')):
+                result = run_bookie_script(module, browser)
+                browser.close()
+                return result
+            else:
+                raise AttributeError(f"The module {module_name} does not have a callable 'main' function")
+    except Exception as e:
+        print(f"Error processing script {script_path}: {e}")
+        raise
+
 def bookie_matches_to_json(bookie_matches: list[BookieMatch]):
     bookie_matches = [asdict(match) for match in bookie_matches]
     with open('bookies.json', 'w') as f:
@@ -62,31 +78,32 @@ def master_matches_to_json(master_matches: list[MasterMatch]):
 
 def main():
     '''
-    Main - currently sequential, eventually run in parallel
+    Main - run in parallel
     '''
     bookies_dir = './bookies'
-    bookie_matches: list[BookieMatch] = []
-    master_matches: list[MasterMatch] = []
+    bookie_matches: List[BookieMatch] = []
+    master_matches: List[MasterMatch] = []
 
-    with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=True)
-        
-        # List all Python files in the bookies directory
-        for filename in os.listdir(bookies_dir):
-            if filename.endswith('.py') and filename != '__init__.py':
-                script_path = os.path.join(bookies_dir, filename)
-                module_name = os.path.splitext(os.path.basename(script_path))[0]
-                spec = importlib.util.spec_from_file_location(module_name, script_path)
-                module = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(module)
-                bookie_matches.extend(run_bookie_script(module, browser))
-        
-        browser.close()
-    
+    # List all Python files in the bookies directory
+    bookie_scripts = [
+        os.path.join(bookies_dir, filename)
+        for filename in os.listdir(bookies_dir)
+        if filename.endswith('.py') and filename != '__init__.py'
+    ]
+
+    with ThreadPoolExecutor(max_workers=len(bookie_scripts)) as executor:
+        future_to_script = {executor.submit(process_bookie_script, script): script for script in bookie_scripts}
+
+        for future in as_completed(future_to_script):
+            script = future_to_script[future]
+            try:
+                result = future.result()
+                bookie_matches.extend(result)
+            except Exception as exc:
+                print(f'{script} generated an exception: {exc}')
+
     master_matches = compile_bookie_matches_into_master_matches(bookie_matches)
     master_matches_to_json(master_matches)
-    
-            
 
 if __name__ == "__main__":
     main()

@@ -44,4 +44,5 @@ def main(browser) -> list[BookieMatch]:
             match = dacite.from_dict(data_class=BookieMatch, data=match)
             matches.append(match)
 
+    print("Finished playup script")
     return matches
