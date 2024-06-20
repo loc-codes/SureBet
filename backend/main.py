@@ -81,8 +81,8 @@ def main():
     Main - run in parallel
     '''
     bookies_dir = './bookies'
-    bookie_matches: List[BookieMatch] = []
-    master_matches: List[MasterMatch] = []
+    bookie_matches: list[BookieMatch] = []
+    master_matches: list[MasterMatch] = []
 
     # List all Python files in the bookies directory
     bookie_scripts = [
