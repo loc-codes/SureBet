@@ -10,5 +10,6 @@ services:
 
 jobs:
   - name: run-scraper
-    schedule: "@every 2m"
+    type: cron
+    schedule: "*/2 * * * *"
     command: "python backend/main.py"
