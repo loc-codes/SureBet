@@ -6,7 +6,7 @@ from config import MASTER_CONFIG
 from copy import deepcopy
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
-from utils import standardise_team_name
+from utils import standardise_team_name, round_to_nearest_five_minutes
 from time import sleep
 
 def main(browser) -> list[BookieMatch]:
@@ -36,7 +36,7 @@ def main(browser) -> list[BookieMatch]:
             if "Tomorrow" in date_time:
                 tomorrow_date = datetime.now() + timedelta(days=1)
                 date_time = date_time.replace("Tomorrow", tomorrow_date.strftime("%d %B %Y"))
-            match['date_time'] = datetime.strptime(date_time, "%d %B %Y %H:%M")
+            match['date_time'] = round_to_nearest_five_minutes(datetime.strptime(date_time, "%d %B %Y %H:%M"))
             teams = match_element.find_all('div', attrs={'data-test-name': "eventParticipant"}) 
             match['team1'], match['team2'] = standardise_team_name(sport, teams[0].text), standardise_team_name(sport, teams[1].text)
             odds = match_element.find_all('div', attrs={'data-test-name': "outcomeBet"})

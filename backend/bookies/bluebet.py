@@ -3,10 +3,9 @@ from models import BookieMatch, SCRAPING_TEMPLATE
 from config import MASTER_CONFIG
 from copy import deepcopy
 from bs4 import BeautifulSoup
-from datetime import datetime
-from utils import standardise_team_name
+from datetime import datetime, timedelta
+from utils import standardise_team_name, round_to_nearest_five_minutes
 import re
-import dateparser
 
 def extract_team_info(team_info_str):
     team_odds_regex = r"([a-zA-Z0-9. ]+)(\d+\.\d+)"
@@ -38,8 +37,23 @@ def main(browser) -> list[BookieMatch]:
             date = match_element.find_previous('h3', attrs={'class': 'MuiTypography-root'}).text.strip()
             match_header = match_element.find('div', attrs={'class': 'MuiCardContent-root'})
             time = match_header.find('div', attrs={'class': 'MuiTypography-caption'}).text.strip()
-            match['date_time'] = dateparser.parse(f'{date} {time}') 
+            date_time = f'{date} {time}'
+            if "Today" in date:
+                # Example Edge Case: Today 20/06/2024 -02h 04m
+                today_date = datetime.now()
+                time_str = time_str.replace("Today", today_date.strftime("%A %d/%m/%Y"))
 
+                # Extract hours and minutes
+                time_offset = time_str.split(' ')[-1]  # Extract '-02h 04m'
+                hours_offset = int(time_offset.split('h')[0])
+                minutes_offset = int(time_offset.split('h ')[1].replace('m', ''))
+                # Add hours and minutes to the current time
+                date_time = today_date + timedelta(hours=hours_offset, minutes=minutes_offset)
+            elif "Tomorrow" in date:
+                tomorrow_date = datetime.now() + timedelta(days=1)
+                date = date.replace("Tomorrow", tomorrow_date.strftime("%A"))
+                date_time = f'{date} {time}'
+            match['date_time'] = round_to_nearest_five_minutes(datetime.strptime(date_time, "%A %d/%m/%Y %H:%M"))
             match_body = match_element.find('div', attrs={'class': 'MuiCardActions-root'})
             team_info = match_body.find_all('button', attrs={'class': 'MuiButton-root'})
             #print([team_inf.text for team_inf in team_info])

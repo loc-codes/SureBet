@@ -6,7 +6,7 @@ from copy import deepcopy
 from bs4 import BeautifulSoup
 from datetime import datetime
 from config import MASTER_CONFIG
-from utils import standardise_team_name
+from utils import standardise_team_name, round_to_nearest_five_minutes
 import re
 
 def neds_extract_team_info(team_info_element):
@@ -37,7 +37,7 @@ def main(browser) -> list[BookieMatch]:
 
             date = match_element.find_previous('div', attrs={'class': 'sports-date-title'}).text.strip()
             time = match_element.find('span', attrs={'class': 'sport-event-card__countdown'}).text.strip()
-            match['date_time'] = datetime.strptime(f'{date} {time}', "%A %d/%m/%Y %I:%M%p")
+            match['date_time'] = round_to_nearest_five_minutes(datetime.strptime(f'{date} {time}', "%A %d/%m/%Y %I:%M%p"))
          
             team_info = match_element.find_all('div', attrs={'class': 'price-button-simple'})
             if team_info:

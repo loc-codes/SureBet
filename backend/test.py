@@ -1,4 +1,4 @@
-import bookies.unibet as test_script
+import bookies.bluebet as test_script
 from playwright.sync_api import sync_playwright
 
 

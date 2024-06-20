@@ -12,23 +12,8 @@ from config import MASTER_CONFIG
 from copy import deepcopy
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
-from utils import standardise_team_name
+from utils import standardise_team_name, round_to_nearest_five_minutes
 import re
-
-def round_to_nearest_five_minutes(date_time: datetime):
-    '''
-    Sportsbet often has matches 1 minute later than others
-    '''    
-    # Calculate the number of minutes since the start of the hour
-    minutes = date_time.minute
-    remainder = minutes % 5
-    if remainder >= 2.5:
-        rounded_minutes = minutes + (5 - remainder)
-    else:
-        rounded_minutes = minutes - remainder
-    rounded_date_time = date_time.replace(minute=0) + timedelta(minutes=rounded_minutes)
-    
-    return rounded_date_time
 
 def handle_sportsbet_team_names(team):
     # Built mainly to handle baseball names like Detroit Tigers (T Skubal)
