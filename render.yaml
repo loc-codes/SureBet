@@ -4,9 +4,3 @@ services:
     env: python
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python backend/server.py"
-
-  - type: cron
-    name: run-scraper
-    schedule: "*/2 * * * *"
-    env: python
-    startCommand: "python backend/main.py"
