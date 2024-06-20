@@ -8,7 +8,7 @@ services:
       - key: FLASK_ENV
         value: production
 
-cronJobs:
+jobs:
   - name: run-scraper
     schedule: "@every 2m"
     command: "python backend/main.py"
