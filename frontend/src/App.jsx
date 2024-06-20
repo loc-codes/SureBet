@@ -6,7 +6,7 @@ function App() {
     const [odds, setOdds] = useState([]);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:5000/api/odds')
+        axios.get('http://127.0.0.1:5001/api/odds')
             .then(response => {
                 setOdds(response.data);
             })
