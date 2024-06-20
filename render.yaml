@@ -8,8 +8,7 @@ services:
       - key: FLASK_ENV
         value: production
 
-jobs:
-  - name: run-scraper
-    type: cron
+  - type: cron
+    name: run-scraper
     schedule: "*/2 * * * *"
     command: "python backend/main.py"
