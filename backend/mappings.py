@@ -38,11 +38,22 @@ team_names = {
         # Neds > Master
         "Adelaide Crows": "Adelaide",
         "Brisbane Lions": "Brisbane",
+        "Collingwood Magpies": "Collingwood",
         "Geelong Cats": "Geelong",
         "Gold Coast Suns": "Gold Coast",
         "GWS Giants": "Greater Western Sydney",
         "Sydney Swans": "Sydney",
         "West Coast Eagles": "West Coast",
+        "Carlton Blues": "Carlton",
+        "Essendon Bombers": "Essendon",
+        "Fremantle Dockers": "Fremantle",
+        "Hawthorn Hawks": "Hawthorn",
+        "Melbourne Demons": "Melbourne",
+        "North Melbourne Kangaroos": "North Melbourne",
+        "Port Adelaide Power": "Port Adelaide",
+        "Richmond Tigers": "Richmond",
+        "St Kilda Saints": "St Kilda",
+        "Western Bulldogs": "Western Bulldogs",
         
         # Playup > Master
         "Carlton Blues": "Carlton",
@@ -97,6 +108,10 @@ team_names = {
         # Unibet > Master
         "LA Dodgers": "Los Angeles Dodgers",
         "LA Angels": "Los Angeles Angels",
+
+        # Bluebet > Master
+        "Los Angeles Angels1": "Los Angeles Angels",
+        "Los Angeles Dodgers1": "Los Angeles Dodgers"
     },
     'nhl': {
         # Master > Master

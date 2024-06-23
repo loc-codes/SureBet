@@ -6,7 +6,7 @@ from config import MASTER_CONFIG
 from copy import deepcopy
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
-from utils import standardise_team_name, round_to_nearest_five_minutes
+from utils import standardise_team_name, round_to_nearest_five_minutes, standardise_today_tomorrow_date
 from time import sleep
 
 def main(browser) -> list[BookieMatch]:
@@ -31,18 +31,23 @@ def main(browser) -> list[BookieMatch]:
             match['url'] = url
             match['sport'] = sport
             date = match_element.find_previous('time').text
-            time = match_element.find('div', attrs={'data-test-name': "clockDisplayContainer"}).text
+            if "Today" in date or "Tomorrow" in date:
+                date = standardise_today_tomorrow_date(date, "day month year")
+            time = match_element.find('div', attrs={'data-test-name': "clockDisplayContainer"})
+            time = time.text if time else datetime.now().time().strftime("%H:%M") # Sport is live if not time
+            if int(time[:2]) > 24:
+                time = datetime.now().time().strftime("%H:%M") # Unibet make some games 60:00 or similar when game is live
             date_time = f'{date} {time}'
-            if "Tomorrow" in date_time:
-                tomorrow_date = datetime.now() + timedelta(days=1)
-                date_time = date_time.replace("Tomorrow", tomorrow_date.strftime("%d %B %Y"))
+            # print(f'{match_element = }')
             match['date_time'] = round_to_nearest_five_minutes(datetime.strptime(date_time, "%d %B %Y %H:%M"))
             teams = match_element.find_all('div', attrs={'data-test-name': "eventParticipant"}) 
             match['team1'], match['team2'] = standardise_team_name(sport, teams[0].text), standardise_team_name(sport, teams[1].text)
             odds = match_element.find_all('div', attrs={'data-test-name': "outcomeBet"})
-            match['team1_odds'], match['team2_odds'] = float(odds[0].text), float(odds[1].text)
-            match = dacite.from_dict(data_class=BookieMatch, data=match)
-            matches.append(match)
+            odds = [odd.text for odd in odds if '+' not in odd.text and '-' not in odd.text]
+            if odds and 'SUS' not in odds and '' not in odds:
+                match['team1_odds'], match['team2_odds'] = float(odds[0]), float(odds[1])
+                match = dacite.from_dict(data_class=BookieMatch, data=match)
+                matches.append(match)
 
     print("Finished unibet script")
     return matches

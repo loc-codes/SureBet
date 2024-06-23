@@ -28,3 +28,13 @@ def round_to_nearest_five_minutes(date_time: datetime):
     rounded_date_time = date_time.replace(minute=0) + timedelta(minutes=rounded_minutes)
     
     return rounded_date_time
+
+def standardise_today_tomorrow_date(date, format="day only"):
+    today_date, tomorrow_date = datetime.now(), datetime.now() + timedelta(days=1)
+    if format == "day only":
+        date = date.replace("Today", today_date.strftime("%A"))
+        date = date.replace("Tomorrow", tomorrow_date.strftime("%A"))
+    elif format == "day month year":
+        date = date.replace("Today", today_date.strftime("%d %B %Y"))
+        date = date.replace("Tomorrow", tomorrow_date.strftime("%d %B %Y"))
+    return date
